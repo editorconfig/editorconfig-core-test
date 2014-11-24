@@ -75,3 +75,7 @@ new_ec_test(windows_separator path_separator.in windows/separator "^[ \t\n\r]*$"
 # Test again that Windows-style path separator (backslash) does not work
 new_ec_test(windows_separator2 path_separator.in windows/separator2 "^[ \t\n\r]*$")
 
+# Globs with backslash in it but should be considered as file name on Non-Windows system
+if(NOT WIN32)
+    new_ec_test(backslash_not_on_windows path_separator.in "windows\\\\separator2" "^key=value[ \t\n\r]*$")
+endif()
