@@ -46,6 +46,9 @@ new_ec_test(root_file root_file.in root_file/test.a "^[ \t\n\r]*$")
 # Test that search stops at root EditorConfig file
 new_ec_test(root_file_mixed_case root_file.in root_mixed/test.a "^child=true[ \t\n\r]*$")
 
+# Test that search stops at root EditorConfig file
+new_ec_test(root_pattern root_file.in root "^name=root[ \t\n\r]*$")
+
 # Tests path separator match
 new_ec_test(path_separator path_separator.in path/separator "^key=value[ \t\n\r]*$")
 
