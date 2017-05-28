@@ -107,6 +107,8 @@ new_ec_test(brackets_slash_inside2 brackets.in abecd.i
     "^[ \t\n\r]*$")
 new_ec_test(brackets_slash_inside3 brackets.in ab[e/]cd.i
     "^slash_inside=true[ \t\n\r]*$")
+new_ec_test(brackets_slash_inside4 brackets.in ab[/c
+    "^slash_half_open=true[ \t\n\r]*$")
 
 # Tests for { and }
 

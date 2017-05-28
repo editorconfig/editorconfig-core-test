@@ -45,3 +45,7 @@ close_outside=false
 ; Slash inside brackets
 [ab[e/]cd.i]
 slash_inside=true
+
+; Slash after an half-open bracket
+[ab[/c]
+slash_half_open=true
