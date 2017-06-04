@@ -82,3 +82,5 @@ new_ec_test(windows_separator2 path_separator.in windows/separator2 "^[ \t\n\r]*
 if(NOT WIN32)
     new_ec_test(backslash_not_on_windows path_separator.in "windows\\\\separator2" "^key=value[ \t\n\r]*$")
 endif()
+
+new_ec_test(path_with_special_chars path_with_special_chars.in "path_with_special_[chars/test.a" "^key=value[ \t\n\r]*$")
