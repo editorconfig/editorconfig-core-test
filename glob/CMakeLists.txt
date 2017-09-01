@@ -202,11 +202,11 @@ new_ec_test(braces_numeric_range8 braces.in 060 "^[ \t\n\r]*$")
 
 # alphabetical brace range
 new_ec_test(braces_alpha_range1 braces.in {ardvark..antimater} "^words=a[ \t\n\r]*$")
-new_ec_test(braces_alpha_range1 braces.in a "^[ \t\n\r]*$")
+new_ec_test(braces_alpha_range2 braces.in a "^[ \t\n\r]*$")
 new_ec_test(braces_alpha_range3 braces.in aardvark "^[ \t\n\r]*$")
-new_ec_test(braces_alpha_range6 braces.in agreement "^[ \t\n\r]*$")
-new_ec_test(braces_alpha_range8 braces.in antelope "^[ \t\n\r]*$")
-new_ec_test(braces_alpha_range9 braces.in antimatter "^[ \t\n\r]*$")
+new_ec_test(braces_alpha_range4 braces.in agreement "^[ \t\n\r]*$")
+new_ec_test(braces_alpha_range5 braces.in antelope "^[ \t\n\r]*$")
+new_ec_test(braces_alpha_range6 braces.in antimatter "^[ \t\n\r]*$")
 
 
 # Tests for **
