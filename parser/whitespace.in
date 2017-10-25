@@ -59,7 +59,7 @@ key: value
 [test3.d]
 key : value
 
-; colon separator with spaces befor
+; colon separator with spaces before
 [test4.d]
   key:value
 

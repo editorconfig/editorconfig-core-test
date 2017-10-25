@@ -137,11 +137,11 @@ new_ec_test(octothorpe_comment_between_props comments.in test10.c
 
 # test octothorpe at end of property value are included in value
 new_ec_test(octothorpe_in_property comments.in test11.c
-    "^key=value; not comment[ \t\n\r]*$")
+    "^key=value# not comment[ \t\n\r]*$")
 
 # test escaped octothorpes are included in property value
 new_ec_test(escaped_octothorpe_in_property comments.in test12.c
-    "^key=value ; not comment[ \t\n\r]*$")
+    "^key=value # not comment[ \t\n\r]*$")
 
 # test escaped octothorpes are included in section names
 new_ec_test(escaped_octothorpe_in_section comments.in "test\#.c"
