@@ -1,0 +1,22 @@
+root = true
+
+[charset.txt]
+charset=utf-8
+
+[end_of_line.txt]
+end_of_line=lf
+
+[indent_size.txt]
+indent_size=2
+
+[indent_style.txt]
+indent_style=space
+
+[insert_final_newline.txt]
+insert_final_newline=true
+
+[tab_width.txt]
+tab_width=4
+
+[trim_trailing_whitespace.txt]
+trim_trailing_whitespace=true

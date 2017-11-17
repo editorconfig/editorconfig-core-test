@@ -84,3 +84,12 @@ if(NOT WIN32)
 endif()
 
 new_ec_test(path_with_special_chars path_with_special_chars.in "path_with_special_[chars/test.a" "^key=value[ \t\n\r]*$")
+
+# Test the unset value with various common properties
+new_ec_test(unset_charset unset.in unset/charset.txt "^charset=unset[ \t\n\r]*$")
+new_ec_test(unset_end_of_line unset.in unset/end_of_line.txt "^end_of_line=unset[ \t\n\r]*$")
+new_ec_test(unset_indent_size unset.in unset/indent_size.txt "^indent_size=unset[ \t\n\r]*tab_width=unset[ \t\n\r]*$")
+new_ec_test(unset_indent_style unset.in unset/indent_style.txt "^indent_style=unset[ \t\n\r]*$")
+new_ec_test(unset_insert_final_newline unset.in unset/insert_final_newline.txt "^insert_final_newline=unset[ \t\n\r]*$")
+new_ec_test(unset_tab_width unset.in unset/tab_width.txt "^tab_width=unset[ \t\n\r]*$")
+new_ec_test(unset_trim_trailing_whitespace unset.in unset/trim_trailing_whitespace.txt "^trim_trailing_whitespace=unset[ \t\n\r]*$")
