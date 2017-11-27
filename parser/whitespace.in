@@ -29,9 +29,13 @@ key1=value1
 
 key2=value2
 
-; spaces in section name
-[ test 7 ]
-key=value
+; spaces at the beginning of a section name
+[ test 71]
+key71=value71
+
+; spaces at the end of a section name
+[test 72 ]
+key72=value72
 
 ; spaces before section name
   [test8.c]

@@ -55,9 +55,16 @@ new_ec_test(spaces_after_property_value whitespace.in test5.c
 new_ec_test(blank_lines_between_properties whitespace.in test6.c 
     "^key1=value1[ \t]*[\n\r]+key2=value2[ \t\n\r]*$")
 
-# test spaces in section name
-new_ec_test(spaces_in_section_name whitespace.in " test 7 "
-    "^key=value[ \t\n\r]*$")
+# test spaces at the beginning of a section name
+new_ec_test(spaces_at_section_name_start whitespace.in " test 71"
+    "^key71=value71[ \t\n\r]*$")
+
+# test spaces at the end of a section name
+# skipped on Windows because filenames with trailing spaces are illegal there
+if(NOT WIN32)
+    new_ec_test(spaces_at_section_name_end whitespace.in "test 72 "
+        "^key72=value72[ \t\n\r]*$")
+endif()
 
 # test spaces before section name are ignored
 new_ec_test(spaces_before_section_name whitespace.in test8.c
