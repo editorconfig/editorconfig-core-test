@@ -212,7 +212,10 @@ new_ec_test(braces_alpha_range6 braces.in antimatter "^[ \t\n\r]*$")
 # Tests for **
 
 # test EditorConfig files with UTF-8 characters larger than 127
-new_ec_test(utf_8_char utf8char.in "中文.txt" "^key=value[ \t\n\r]*$")
+# skipped on Windows as a known issue - see https://github.com/editorconfig/editorconfig-core-c/issues/32
+if(NOT WIN32)
+    new_ec_test(utf_8_char utf8char.in "中文.txt" "^key=value[ \t\n\r]*$")
+endif()
 
 # matches over path separator
 new_ec_test(star_star_over_separator1 star_star.in a/z.c "^key1=value1[ \t\n\r]*$")
