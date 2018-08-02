@@ -158,7 +158,7 @@ new_ec_test(crlf_linesep crlf.in "a.c" "^key=value[ \t\n\r]*$")
 new_ec_test(max_property_name limits.in test1
     "^00000000000000000000000000000000000000000000000001=50[ \t\n\r]*$")
 new_ec_test(max_property_value limits.in test2
-    "^k255=000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001[ \t\n\r]*$")
+    "^k255=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa1[ \t\n\r]*$")
 
 # Test max section names
 new_ec_test(max_section_name_ok limits.in test3 "^key=value[ \t\n\r]*$")
