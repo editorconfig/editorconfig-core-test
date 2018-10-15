@@ -54,6 +54,7 @@ new_ec_test(path_separator path_separator.in path/separator "^key=value[ \t\n\r]
 
 # Windows style path separator in the command line should work on Windows, but
 # should not work on other systems
+# TODO figure out how to handle Cygwin
 if(WIN32)
     set(path_separator_backslash_in_cmd_line_regex "^key=value[ \t\n\r]*$")
 else(WIN32)
@@ -79,7 +80,7 @@ new_ec_test(windows_separator path_separator.in windows/separator "^[ \t\n\r]*$"
 new_ec_test(windows_separator2 path_separator.in windows/separator2 "^[ \t\n\r]*$")
 
 # Globs with backslash in it but should be considered as file name on Non-Windows system
-if(NOT WIN32)
+if( (NOT WIN32) AND (NOT CYGWIN) )
     new_ec_test(backslash_not_on_windows path_separator.in "windows\\\\separator2" "^key=value[ \t\n\r]*$")
 endif()
 
