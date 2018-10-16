@@ -28,19 +28,25 @@
 # Tests for *
 
 # matches a single characters
-new_ec_test(star_single star.in ace.c "^key=value[ \t\n\r]*$")
+new_ec_test(star_single star.in ace.c "^key=value[ \t\n\r]*keyc=valuec[ \t\n\r]*$")
 
 # matches zero characters
-new_ec_test(star_zero star.in ae.c "^key=value[ \t\n\r]*$")
+new_ec_test(star_zero star.in ae.c "^key=value[ \t\n\r]*keyc=valuec[ \t\n\r]*$")
 
 # matches multiple characters
-new_ec_test(star_multiple star.in abcde.c "^key=value[ \t\n\r]*$")
+new_ec_test(star_multiple star.in abcde.c "^key=value[ \t\n\r]*keyc=valuec[ \t\n\r]*$")
 
 # does not match path separator
-new_ec_test(star_over_slash star.in a/e.c "^[ \t\n\r]*$")
+new_ec_test(star_over_slash star.in a/e.c "^[ \t\n\r]*keyc=valuec[ \t\n\r]*$")
 
 # star after a slash
-new_ec_test(star_after_slash star.in Bar/foo.txt "^keyb=valueb[ \t\n\r]*$")
+new_ec_test(star_after_slash star.in Bar/foo.txt "^keyb=valueb[ \t\n\r]*keyc=valuec[ \t\n\r]*$")
+
+# star matches a dot file after slash
+new_ec_test(star_matches_dot_file_after_slash star.in Bar/.editorconfig "^keyb=valueb[ \t\n\r]*keyc=valuec[ \t\n\r]*$")
+
+# star matches a dot file
+new_ec_test(star_matches_dot_file star.in .editorconfig "^keyc=valuec[ \t\n\r]*$")
 
 # Tests for ?
 
