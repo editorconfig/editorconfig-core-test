@@ -7,3 +7,6 @@ key=value
 
 [Bar/*]
 keyb=valueb
+
+[*]
+keyc=valuec
