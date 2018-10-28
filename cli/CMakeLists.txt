@@ -1,16 +1,16 @@
 #
 # Copyright (c) 2011-2012 EditorConfig Team
 # All rights reserved.
-# 
+#
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
-# 
+#
 # 1. Redistributions of source code must retain the above copyright notice,
 #    this list of conditions and the following disclaimer.
 # 2. Redistributions in binary form must reproduce the above copyright notice,
 #    this list of conditions and the following disclaimer in the documentation
 #    and/or other materials provided with the distribution.
-# 
+#
 # THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 # AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 # IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -44,6 +44,14 @@ set_tests_properties(test_short_version_switch PROPERTIES
 add_test(multiple_files_on_command_line ${EDITORCONFIG_CMD} -f cli.in
     "${CMAKE_CURRENT_SOURCE_DIR}/file1.c"
     "${CMAKE_CURRENT_SOURCE_DIR}/file2.cpp")
+
+make_regex_of_permutations(     # each pair of lines must be in that order,
+    RETVAL multi_files_regex    # but the pairs can be in either order.
+    EXPECTED
+    "\\[${CMAKE_CURRENT_SOURCE_DIR}/file1.c\\][ \t]*[\n\r]+key1=value1[ \t]*"
+    "\\[${CMAKE_CURRENT_SOURCE_DIR}/file2.cpp\\][ \t]*[\n\r]+key2=value2[ \t]*"
+)
+
 set_tests_properties(multiple_files_on_command_line PROPERTIES
-    PASS_REGULAR_EXPRESSION
-    "^\\[${CMAKE_CURRENT_SOURCE_DIR}/file1.c\\][ \t]*[\n\r]+key1=value1[ \t]*[\n\r]+\\[${CMAKE_CURRENT_SOURCE_DIR}/file2.cpp\\][ \t]*[\n\r]+key2=value2[ \t\n\r]*$")
+    PASS_REGULAR_EXPRESSION "${multi_files_regex}"
+)

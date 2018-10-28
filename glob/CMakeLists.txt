@@ -1,16 +1,16 @@
 #
 # Copyright (c) 2011-2014 EditorConfig Team
 # All rights reserved.
-# 
+#
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
-# 
+#
 # 1. Redistributions of source code must retain the above copyright notice,
 #    this list of conditions and the following disclaimer.
 # 2. Redistributions in binary form must reproduce the above copyright notice,
 #    this list of conditions and the following disclaimer in the documentation
 #    and/or other materials provided with the distribution.
-# 
+#
 # THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 # AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 # IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -28,22 +28,28 @@
 # Tests for *
 
 # matches a single characters
-new_ec_test(star_single star.in ace.c "^key=value[ \t\n\r]*keyc=valuec[ \t\n\r]*$")
+ec_test_lines(NAME star_single EC_FILE star.in SRC_FILE ace.c
+    EXPECTED "key=value[ \t]*" "keyc=valuec[ \t]*")
 
 # matches zero characters
-new_ec_test(star_zero star.in ae.c "^key=value[ \t\n\r]*keyc=valuec[ \t\n\r]*$")
+ec_test_lines(NAME star_zero EC_FILE star.in SRC_FILE ae.c
+    EXPECTED "key=value[ \t]*" "keyc=valuec[ \t]*")
 
 # matches multiple characters
-new_ec_test(star_multiple star.in abcde.c "^key=value[ \t\n\r]*keyc=valuec[ \t\n\r]*$")
+ec_test_lines(NAME star_multiple EC_FILE star.in SRC_FILE abcde.c
+    EXPECTED "key=value[ \t]*" "keyc=valuec[ \t]*")
 
 # does not match path separator
 new_ec_test(star_over_slash star.in a/e.c "^[ \t\n\r]*keyc=valuec[ \t\n\r]*$")
 
 # star after a slash
-new_ec_test(star_after_slash star.in Bar/foo.txt "^keyb=valueb[ \t\n\r]*keyc=valuec[ \t\n\r]*$")
+ec_test_lines(NAME star_after_slash EC_FILE star.in SRC_FILE Bar/foo.txt
+    EXPECTED "keyb=valueb[ \t]*" "keyc=valuec[ \t]*")
 
 # star matches a dot file after slash
-new_ec_test(star_matches_dot_file_after_slash star.in Bar/.editorconfig "^keyb=valueb[ \t\n\r]*keyc=valuec[ \t\n\r]*$")
+ec_test_lines(NAME star_matches_dot_file_after_slash EC_FILE star.in
+    SRC_FILE Bar/.editorconfig
+    EXPECTED "keyb=valueb[ \t]*" "keyc=valuec[ \t]*")
 
 # star matches a dot file
 new_ec_test(star_matches_dot_file star.in .editorconfig "^keyc=valuec[ \t\n\r]*$")
