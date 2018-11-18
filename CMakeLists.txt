@@ -1,16 +1,16 @@
 #
 # Copyright (c) 2011-2012 EditorConfig Team
 # All rights reserved.
-# 
+#
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
-# 
+#
 # 1. Redistributions of source code must retain the above copyright notice,
 #    this list of conditions and the following disclaimer.
 # 2. Redistributions in binary form must reproduce the above copyright notice,
 #    this list of conditions and the following disclaimer in the documentation
 #    and/or other materials provided with the distribution.
-# 
+#
 # THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 # AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 # IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -29,11 +29,15 @@
 # testing only.
 project(editorconfig-core-test NONE)
 
+# Where this file lives
+set( tests_cmakelists_dir "${CMAKE_CURRENT_LIST_DIR}" )
+#message( STATUS "Tests are in ${tests_cmakelists_dir}" )
+
 # Only when we are using editorconfig-core-test independently should we check
 # cmake version, set EDITORCONFIG_CMD as cache string, and enable_testing()
 # here.
 if(${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_SOURCE_DIR})
-    cmake_minimum_required(VERSION 2.6)
+    cmake_minimum_required(VERSION 3.5)
     set(EDITORCONFIG_CMD "editorconfig" CACHE STRING "editorconfig command.")
     enable_testing()
 endif()
@@ -58,9 +62,30 @@ function(new_ec_test_full_ec_file_path name ec_file src_file regex)
     set_tests_properties(${name} PROPERTIES PASS_REGULAR_EXPRESSION "${regex}")
 endfunction()
 
+# A test that returns multiple lines of output.  CAUTION: filenames used in
+# these tests may not contain semicolons.
+function(new_ec_test_multiline name ec_file src_file regex)
+    #message( STATUS "Building multiline test ${name} with tests_cmakelists_dir ${tests_cmakelists_dir}" )
+    #message( STATUS "List dir ${CMAKE_CURRENT_LIST_DIR}, source dir ${CMAKE_CURRENT_SOURCE_DIR}" )
+    add_test(${name} "cmake"
+                "-D" "EDITORCONFIG_CMD=${EDITORCONFIG_CMD}"
+                    # Since variables aren't autpmatically passed to the inner cmake
+                "-D" "ECARGS:LIST=-f;${ec_file};${CMAKE_CURRENT_SOURCE_DIR}/${src_file}"
+                    # Note: the semicolons separate list elements.
+                "-P" "${tests_cmakelists_dir}/cmake/ec_sort.cmake")
+    set_tests_properties(${name} PROPERTIES PASS_REGULAR_EXPRESSION
+        "^[\n]*${regex}$")
+        # Permit leading \n's because I can't always get rid of them using
+        # only CMake-provided facilities.
+endfunction()
+
+
+# First, make sure the test harness works.
+add_subdirectory(meta)
+
+# Then test the core.
 add_subdirectory(glob)
 add_subdirectory(properties)
 add_subdirectory(parser)
 add_subdirectory(filetree)
 add_subdirectory(cli)
-
