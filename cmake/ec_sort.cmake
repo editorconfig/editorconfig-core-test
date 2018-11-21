@@ -4,6 +4,8 @@
 
 # Call as, e.g.:
 # cmake -D EDITORCONFIG_CMD="../editorconfig" -D ECARGS:LIST="-f;.editorconfig;foo" -P cmake/ec_sort.cmake
+# EDITORCONFIG_CMD may also be list-valued.  EDITORCONFIG_CMD and ECARGS
+# are put together on the command line, in that order, and split by CMake.
 
 # BSD-2-Clause
 # Copyright 2018 Christopher White (cxw42 at GitHub; http://devwrench.com)
@@ -38,6 +40,11 @@ list(APPEND CMAKE_MODULE_PATH "${tests_cmake_ec_sort_dir}/../cmake")
 include(runandsort)
 
 # Required parameters are in variables: EDITORCONFIG_CMD and ECARGS
+if("${EDITORCONFIG_CMD}" STREQUAL "")
+    message(FATAL_ERROR "No EDITORCONFIG_CMD parameter specified")
+    return()
+endif()
+
 if("${ECARGS}" STREQUAL "")
     message(FATAL_ERROR "No ECARGS parameter specified")
     return()
@@ -47,8 +54,7 @@ endif()
 #message(FATAL_ERROR " Running ${EDITORCONFIG_CMD} with ${ECARGS}")
 
 run_and_sort(RETVAL lines RETVAL_FAILURE did_fail
-    PGM "${EDITORCONFIG_CMD}"
-    ARGS ${ECARGS}
+    CMDLINE ${EDITORCONFIG_CMD} ${ECARGS}
 )
 
 if(${did_fail})

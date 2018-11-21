@@ -48,8 +48,7 @@ cmake_minimum_required(VERSION 3.5)
 
 # Arguments:
 #   RETVAL .  .  .  .  .  .  .  The name of the variable to store the result in
-#   PGM .  .  .  .  .  .  .  .  The program to run
-#   ARGS .  .  .  .  .  .  .  . Any arguments to pass to the program
+#   CMDLINE .  .  .  .  .  .  . The program to run, and any arguments
 #   RETVAL_FAILURE .  .  .  .   If present, a variable that will be set to TRUE
 #                               if PGM returns a non-zero exit code.
 #   CAPTURE_STDERR .  .  .  .   If present, capture stderr instead of stdout
@@ -64,13 +63,13 @@ cmake_minimum_required(VERSION 3.5)
 function(run_and_sort)
     # Argument parsing
     set(option_keywords CAPTURE_STDERR TRIM_INITIAL_LEADING_SPACE)
-    set(one_value_keywords RETVAL RETVAL_FAILURE PGM)
-    set(multi_value_keywords ARGS)
+    set(one_value_keywords RETVAL RETVAL_FAILURE)
+    set(multi_value_keywords CMDLINE ARGS)
     cmake_parse_arguments(P "${option_keywords}" "${one_value_keywords}"
                             "${multi_value_keywords}" ${ARGN})
 
-    #message(STATUS "Running ${P_PGM} with ${P_ARGS}")
-    execute_process(COMMAND "${P_PGM}" ${P_ARGS}
+    #message(STATUS "Running ${P_CMDLINE}")
+    execute_process(COMMAND ${P_CMDLINE}
         RESULT_VARIABLE ep_retval
         OUTPUT_VARIABLE ep_stdout
         ERROR_VARIABLE ep_stderr
