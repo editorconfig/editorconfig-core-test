@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2011-2012 EditorConfig Team
+# Copyright (c) 2011-2018 EditorConfig Team
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -30,8 +30,8 @@
 project(editorconfig-core-test NONE)
 
 # Where this file lives
-set( tests_cmakelists_dir "${CMAKE_CURRENT_LIST_DIR}" )
-#message( STATUS "Tests are in ${tests_cmakelists_dir}" )
+set(tests_cmakelists_dir "${CMAKE_CURRENT_LIST_DIR}")
+#message(STATUS "Tests are in ${tests_cmakelists_dir}")
 
 # Only when we are using editorconfig-core-test independently should we check
 # cmake version, set EDITORCONFIG_CMD as cache string, and enable_testing()
@@ -65,8 +65,8 @@ endfunction()
 # A test that returns multiple lines of output.  CAUTION: filenames used in
 # these tests may not contain semicolons.
 function(new_ec_test_multiline name ec_file src_file regex)
-    #message( STATUS "Building multiline test ${name} with tests_cmakelists_dir ${tests_cmakelists_dir}" )
-    #message( STATUS "List dir ${CMAKE_CURRENT_LIST_DIR}, source dir ${CMAKE_CURRENT_SOURCE_DIR}" )
+    #message(STATUS "Building multiline test ${name} with tests_cmakelists_dir ${tests_cmakelists_dir}")
+    #message(STATUS "List dir ${CMAKE_CURRENT_LIST_DIR}, source dir ${CMAKE_CURRENT_SOURCE_DIR}")
     add_test(${name} "cmake"
                 "-D" "EDITORCONFIG_CMD=${EDITORCONFIG_CMD}"
                     # Since variables aren't autpmatically passed to the inner cmake

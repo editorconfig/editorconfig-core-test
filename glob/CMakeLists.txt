@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2011-2014 EditorConfig Team
+# Copyright (c) 2011-2018 EditorConfig Team
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -23,7 +23,6 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 #
-
 
 # Tests for *
 
@@ -177,7 +176,7 @@ new_ec_test(braces_escaped_brace3 braces.in f.txt "^closing=yes[ \t\n\r]*$")
 
 # escaped backslash
 new_ec_test(braces_escaped_backslash1 braces.in g.txt "^backslash=yes[ \t\n\r]*$")
-if( (NOT WIN32) AND (NOT CYGWIN) )  # this case is impossible on Windows.
+if((NOT WIN32) AND (NOT CYGWIN))    # this case is impossible on Windows.
     new_ec_test(braces_escaped_backslash2 braces.in \\\\.txt "^backslash=yes[ \t\n\r]*$")
 endif()
 new_ec_test(braces_escaped_backslash3 braces.in i.txt "^backslash=yes[ \t\n\r]*$")

@@ -29,16 +29,16 @@
 
 cmake_minimum_required(VERSION 3.5)
 
-if( "${WHICH}" EQUAL "" )
-    message( FATAL_ERROR "No WHICH parameter specified" )
+if("${WHICH}" STREQUAL "")
+    message(FATAL_ERROR "No WHICH parameter specified")
     return()
 endif()
 
-#message( FATAL_ERROR " Reading ${WHICH}" )     # Uncomment for debugging
-file( READ "${WHICH}" contents )
+#message(FATAL_ERROR " Reading ${WHICH}")     # Uncomment for debugging
+file(READ "${WHICH}" contents)
 
 # message() will give us an extra \n, so trim one if we can.
-string( REGEX REPLACE "(\r\n|\r|\n)$" "" lines "${lines}" )
+string(REGEX REPLACE "(\r\n|\r|\n)$" "" lines "${lines}")
 
 # Print, with a leading space as noted above.
-message( " ${contents}" )
+message(" ${contents}")
