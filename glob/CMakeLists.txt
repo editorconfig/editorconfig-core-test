@@ -1,16 +1,16 @@
 #
 # Copyright (c) 2011-2014 EditorConfig Team
 # All rights reserved.
-# 
+#
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
-# 
+#
 # 1. Redistributions of source code must retain the above copyright notice,
 #    this list of conditions and the following disclaimer.
 # 2. Redistributions in binary form must reproduce the above copyright notice,
 #    this list of conditions and the following disclaimer in the documentation
 #    and/or other materials provided with the distribution.
-# 
+#
 # THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 # AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 # IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -28,22 +28,22 @@
 # Tests for *
 
 # matches a single characters
-new_ec_test(star_single star.in ace.c "^key=value[ \t\n\r]*keyc=valuec[ \t\n\r]*$")
+new_ec_test_multiline(star_single_ML star.in ace.c "key=value[ \t\n\r]+keyc=valuec[ \t\n\r]*")
 
 # matches zero characters
-new_ec_test(star_zero star.in ae.c "^key=value[ \t\n\r]*keyc=valuec[ \t\n\r]*$")
+new_ec_test_multiline(star_zero_ML star.in ae.c "key=value[ \t\n\r]+keyc=valuec[ \t\n\r]*")
 
 # matches multiple characters
-new_ec_test(star_multiple star.in abcde.c "^key=value[ \t\n\r]*keyc=valuec[ \t\n\r]*$")
+new_ec_test_multiline(star_multiple_ML star.in abcde.c "key=value[ \t\n\r]+keyc=valuec[ \t\n\r]*")
 
 # does not match path separator
 new_ec_test(star_over_slash star.in a/e.c "^[ \t\n\r]*keyc=valuec[ \t\n\r]*$")
 
 # star after a slash
-new_ec_test(star_after_slash star.in Bar/foo.txt "^keyb=valueb[ \t\n\r]*keyc=valuec[ \t\n\r]*$")
+new_ec_test_multiline(star_after_slash_ML star.in Bar/foo.txt "keyb=valueb[ \t\n\r]+keyc=valuec[ \t\n\r]*")
 
 # star matches a dot file after slash
-new_ec_test(star_matches_dot_file_after_slash star.in Bar/.editorconfig "^keyb=valueb[ \t\n\r]*keyc=valuec[ \t\n\r]*$")
+new_ec_test_multiline(star_matches_dot_file_after_slash_ML star.in Bar/.editorconfig "keyb=valueb[ \t\n\r]+keyc=valuec[ \t\n\r]*")
 
 # star matches a dot file
 new_ec_test(star_matches_dot_file star.in .editorconfig "^keyc=valuec[ \t\n\r]*$")
