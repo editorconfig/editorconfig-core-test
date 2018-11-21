@@ -9,8 +9,8 @@ include( runandsort )
 
 run_and_sort( RETVAL lines RETVAL_FAILURE did_fail
     CAPTURE_STDERR TRIM_INITIAL_LEADING_SPACE   # since we're using almostcat
-    PGM "cmake"
-    ARGS "-DWHICH:STRING=${tests_meta_sample_dir}/sample.txt" "-P" "${tests_meta_sample_dir}/../cmake/almostcat.cmake"
+    CMDLINE "cmake" "-DWHICH:STRING=${tests_meta_sample_dir}/sample.txt"
+            "-P" "${tests_meta_sample_dir}/../cmake/almostcat.cmake"
 )       # Don't use cat(1) since we might be running on Windows
 
 if( ${did_fail} )
