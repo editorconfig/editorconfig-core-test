@@ -3,13 +3,13 @@
 root=true
 
 [path/separator]
-key=value
+key1=value1
 
 [/top/of/path]
-key=value
+key2=value2
 
 [windows\separator]
-key=value
+key3=value3
 
 [windows\\separator2]
-key=value
+key4=value4
