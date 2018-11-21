@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2011-2012 EditorConfig Team
+# Copyright (c) 2011-2018 EditorConfig Team
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -23,7 +23,6 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 #
-
 
 # test tab_width default
 new_ec_test_multiline(tab_width_default_ML tab_width_default.in test.c
@@ -57,7 +56,7 @@ new_ec_test_multiline(indent_size_default_with_tab_width_ML
 
 # test that same property values are lowercased (v0.9.0 properties)
 new_ec_test_multiline(lowercase_values1_ML lowercase_values.in test1.c
-    "end_of_line=crlf[ \t]*[\n\r]+indent_style=space[ \t\n\r]*" )
+    "end_of_line=crlf[ \t]*[\n\r]+indent_style=space[ \t\n\r]*")
 
 # test that same property values are lowercased (v0.9.0 properties)
 new_ec_test_multiline(lowercase_values2_ML lowercase_values.in test2.c

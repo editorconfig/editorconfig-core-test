@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2011-2012 EditorConfig Team
+# Copyright (c) 2011-2018 EditorConfig Team
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -82,7 +82,7 @@ new_ec_test(windows_separator path_separator.in windows/separator "^[ \t\n\r]*$"
 new_ec_test(windows_separator2 path_separator.in windows/separator2 "^[ \t\n\r]*$")
 
 # Globs with backslash in it but should be considered as file name on Non-Windows system
-if( (NOT WIN32) AND (NOT CYGWIN) )
+if((NOT WIN32) AND (NOT CYGWIN))
     new_ec_test(backslash_not_on_windows path_separator.in "windows\\\\separator2" "^key4=value4[ \t\n\r]*$")
 endif()
 
