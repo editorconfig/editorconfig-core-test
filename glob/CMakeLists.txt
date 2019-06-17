@@ -58,6 +58,8 @@ new_ec_test(question_zero question.in som.c "^[ \t\n\r]*$")
 # does not match multiple characters
 new_ec_test(question_multiple question.in something.c "^[ \t\n\r]*$")
 
+# does not match slash
+new_ec_test(question_slash question.in som/.c "^[ \t\n\r]*$")
 
 # Tests for [ and ]
 
