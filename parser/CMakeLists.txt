@@ -112,10 +112,6 @@ new_ec_test_multiline(comment_between_props_ML comments.in test4.c
 new_ec_test(semicolon_in_property comments.in test5.c
     "^key=value; not comment[ \t\n\r]*$")
 
-# test escaped semicolons are included in property value
-new_ec_test(escaped_semicolon_in_property comments.in test6.c
-    "^key=value ; not comment[ \t\n\r]*$")
-
 # test escaped semicolons are included in section names
 new_ec_test(escaped_semicolon_in_section comments.in "test;.c"
     "^key=value[ \t\n\r]*$")
