@@ -68,12 +68,12 @@ function(run_and_sort)
     cmake_parse_arguments(P "${option_keywords}" "${one_value_keywords}"
                             "${multi_value_keywords}" ${ARGN})
 
-    #message(STATUS "Running ${P_CMDLINE}")
+    #message(STATUS "Running ${P_CMDLINE}")              # DEBUG
     execute_process(COMMAND ${P_CMDLINE}
         RESULT_VARIABLE ep_retval
         OUTPUT_VARIABLE ep_stdout
         ERROR_VARIABLE ep_stderr
-)
+    )
 
     # Which one are we processing?
     if(${P_CAPTURE_STDERR})
@@ -82,8 +82,9 @@ function(run_and_sort)
         set(ep_out "${ep_stdout}")
     endif()
 
-    #message(STATUS "Got stdout =${ep_stdout}=")
-    #message(STATUS "Got stderr =${ep_stderr}=")
+    #message(STATUS "Got retval =${ep_retval}=")         # DEBUG
+    #message(STATUS "Got stdout =${ep_stdout}=")         # DEBUG
+    #message(STATUS "Got stderr =${ep_stderr}=")         # DEBUG
 
     # Early bail on failure
     if(NOT("${ep_retval}" EQUAL "0"))
@@ -102,30 +103,30 @@ function(run_and_sort)
     # Change all the semicolons in the output to \x01
     string(ASCII 1 ONE)
     string(REPLACE ";" "${ONE}" ep_out "${ep_out}")
-    #message(STATUS "After escaping =${ep_out}=")
+    #message(STATUS "After escaping =${ep_out}=")        # DEBUG
 
     # Normalize line endings, just in case
     string(REGEX REPLACE "\r|\n|\r\n" "\n" ep_out "${ep_out}")
-    #message(STATUS "After line-endings =${ep_out}=")
+    #message(STATUS "After line-endings =${ep_out}=")    # DEBUG
 
     # Turn the string into a list
     string(REPLACE "\n" ";" ep_out "${ep_out}")
-    #message(STATUS "After listifying =${ep_out}=")
+    #message(STATUS "After listifying =${ep_out}=")      # DEBUG
 
     # Sort the list
     list(SORT ep_out)
 
     # Back to individual lines
     string(REPLACE ";" "\n" ep_out "${ep_out}")
-    #message(STATUS "After back to lines =${ep_out}=")
+    #message(STATUS "After back to lines =${ep_out}=")   # DEBUG
 
     # And back to semicolons.  Note: I am not trying to reverse line endings.
     string(REPLACE "${ONE}" ";" ep_out "${ep_out}")
-    #message(STATUS "After unescaping =${ep_out}=")
+    #message(STATUS "After unescaping =${ep_out}=")      # DEBUG
 
     # Out to the caller
     set(${P_RETVAL} "${ep_out}" PARENT_SCOPE)
-    #message(STATUS "Returned =${ep_out}=")
+    #message(STATUS "Returned =${ep_out}=")              # DEBUG
 
 endfunction(run_and_sort)
 
