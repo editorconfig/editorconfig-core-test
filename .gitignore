@@ -11,3 +11,8 @@ CTestTestfile.cmake
 
 # Eclipse
 .project
+
+# Editor backup files
+~*
+*~
+*.swp

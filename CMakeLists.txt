@@ -24,6 +24,9 @@
 # POSSIBILITY OF SUCH DAMAGE.
 #
 
+# New escape-sequence processing.
+cmake_minimum_required(VERSION 3.5)
+cmake_policy(VERSION 3.5.1)
 
 # Don't check any language compiler. This project is for EditorConfig Core
 # testing only.
@@ -31,34 +34,42 @@ project(editorconfig-core-test NONE)
 
 # Where this file lives
 set(tests_cmakelists_dir "${CMAKE_CURRENT_LIST_DIR}")
-#message(STATUS "Tests are in ${tests_cmakelists_dir}")
+message(STATUS "Tests are in ${tests_cmakelists_dir}")
 
 # Only when we are using editorconfig-core-test independently should we check
 # cmake version, set EDITORCONFIG_CMD as cache string, and enable_testing()
 # here.
 if(${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_SOURCE_DIR})
-    cmake_minimum_required(VERSION 3.5)
     set(EDITORCONFIG_CMD "editorconfig" CACHE STRING "editorconfig command.")
+    set(EDITORCONFIG_CMD_IS_TARGET OFF CACHE BOOL
+        "EDITORCONFIG_CMD names a CMake target rather than an executable.")
     enable_testing()
+    message(STATUS "tests: Standalone testing enabled")
+endif()
+
+if(${EDITORCONFIG_CMD_IS_TARGET})
+    message(STATUS "tests: Using editorconfig target ${EDITORCONFIG_CMD}")
+else()
+    message(STATUS "tests: Using editorconfig binary ${EDITORCONFIG_CMD}")
 endif()
 
 # The most common test function
 function(new_ec_test name ec_file src_file regex)
-    add_test(${name} ${EDITORCONFIG_CMD} -f ${ec_file}
+    add_test(NAME ${name} COMMAND ${EDITORCONFIG_CMD} -f ${ec_file}
         "${CMAKE_CURRENT_SOURCE_DIR}/${src_file}")
     set_tests_properties(${name} PROPERTIES PASS_REGULAR_EXPRESSION "${regex}")
 endfunction()
 
-# The tests that requires version specified
+# A test that requires a version specified
 function(new_ec_test_version name ec_file src_file regex version)
-    add_test(${name} ${EDITORCONFIG_CMD} -b ${version} -f ${ec_file}
+    add_test(NAME ${name} COMMAND ${EDITORCONFIG_CMD} -b ${version} -f ${ec_file}
         "${CMAKE_CURRENT_SOURCE_DIR}/${src_file}")
     set_tests_properties(${name} PROPERTIES PASS_REGULAR_EXPRESSION "${regex}")
 endfunction()
 
-# The tests that requires the full path EditorConfig files
+# A test that requires the full path to the EditorConfig files
 function(new_ec_test_full_ec_file_path name ec_file src_file regex)
-    add_test(${name} ${EDITORCONFIG_CMD} -f ${ec_file} "${src_file}")
+    add_test(NAME ${name} COMMAND ${EDITORCONFIG_CMD} -f ${ec_file} ${src_file})
     set_tests_properties(${name} PROPERTIES PASS_REGULAR_EXPRESSION "${regex}")
 endfunction()
 
@@ -67,18 +78,42 @@ endfunction()
 function(new_ec_test_multiline name ec_file src_file regex)
     #message(STATUS "Building multiline test ${name} with tests_cmakelists_dir ${tests_cmakelists_dir}")
     #message(STATUS "List dir ${CMAKE_CURRENT_LIST_DIR}, source dir ${CMAKE_CURRENT_SOURCE_DIR}")
-    add_test(${name} "cmake"
-                "-D" "EDITORCONFIG_CMD=${EDITORCONFIG_CMD}"
-                    # Since variables aren't autpmatically passed to the inner cmake
-                "-D" "ECARGS:LIST=-f;${ec_file};${CMAKE_CURRENT_SOURCE_DIR}/${src_file}"
-                    # Note: the semicolons separate list elements.
-                "-P" "${tests_cmakelists_dir}/cmake/ec_sort.cmake")
+    if(${EDITORCONFIG_CMD_IS_TARGET})
+        add_test(NAME ${name} COMMAND "cmake"
+                    "-D" "EDITORCONFIG_CMD=$<TARGET_FILE:${EDITORCONFIG_CMD}>"
+                        # Since variables aren't automatically passed to the inner cmake
+                    "-D" "ECARGS:LIST=-f;${ec_file};${CMAKE_CURRENT_SOURCE_DIR}/${src_file}"
+                        # Note: the semicolons separate list elements.
+                    "-P" "${tests_cmakelists_dir}/cmake/ec_sort.cmake")
+    else()
+        add_test(NAME ${name} COMMAND "cmake"
+                    "-D" "EDITORCONFIG_CMD=${EDITORCONFIG_CMD}"
+                        # Since variables aren't automatically passed to the inner cmake
+                    "-D" "ECARGS:LIST=-f;${ec_file};${CMAKE_CURRENT_SOURCE_DIR}/${src_file}"
+                        # Note: the semicolons separate list elements.
+                    "-P" "${tests_cmakelists_dir}/cmake/ec_sort.cmake")
+    endif()
+
     set_tests_properties(${name} PROPERTIES PASS_REGULAR_EXPRESSION
-        "^[\n]*${regex}$")
+        "^[\r\n]*${regex}$")
         # Permit leading \n's because I can't always get rid of them using
         # only CMake-provided facilities.
 endfunction()
 
+# Tests for other CLI arguments.  Usage:
+#   new_ec_cli_test(NAME name MATCH pass_regex ARGS arguments...)
+function(new_ec_cli_test)
+    # Parse args
+    set(one_value_keywords NAME MATCH)
+    set(multi_value_keywords ARGS)
+    cmake_parse_arguments(P
+        "" "${one_value_keywords}" "${multi_value_keywords}" ${ARGN})
+
+    # Add test
+    add_test(NAME ${P_NAME} COMMAND ${EDITORCONFIG_CMD} ${P_ARGS})
+    set_tests_properties(${name} PROPERTIES PASS_REGULAR_EXPRESSION "${P_MATCH}")
+
+endfunction()
 
 # First, make sure the test harness works.
 add_subdirectory(meta)

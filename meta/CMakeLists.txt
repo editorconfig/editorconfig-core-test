@@ -37,9 +37,11 @@ message(STATUS "meta: Using editorconfig ${EDITORCONFIG_CMD}")
 # Test run_and_sort()
 add_test(meta_runandsort cmake -P "${tests_meta_cmakelists_dir}/sample.cmake")
 set_tests_properties(meta_runandsort PROPERTIES PASS_REGULAR_EXPRESSION
-    "^[\n]*0${L}a;b${L}b;c${L}b;e${L}b;f${L}c;b;a${L}d${L}$")
+    "^[\r\n]*0${L}a;b${L}b;c${L}b;e${L}b;f${L}c;b;a${L}d${L}$")
     # Have to permit leading \n's - I don't know how to get rid of them
 
-# Test the new multiline macro on a simple case
+# Test the new multiline macro on a simple case.  The new_ec_test_multiline
+# function adds /^[\r\n]*/ to the beginning of the provided regex, and
+# /$/ to the end.
 new_ec_test_multiline(meta_multiline meta.in meta.c
-    "^[\n]*answer=42${L}$")
+    "answer=42${L}")
