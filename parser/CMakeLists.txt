@@ -70,22 +70,22 @@ new_ec_test(spaces_after_section_name whitespace.in test9.c "^key=value[ \t\n\r]
 new_ec_test_multiline(spaces_before_middle_property_ML whitespace.in test10.c
     "key1=value1[ \t]*[\n\r]+key2=value2[ \t]*[\n\r]+key3=value3[ \t\n\r]*")
 
-# test colon seperator with no whitespaces in property assignment
+# test colon separator with no whitespaces in property assignment
 new_ec_test(colon_sep_no_whitespace whitespace.in test1.d "^key=value[ \t\n\r]*$")
 
-# test colon seperator with single spaces around equals sign
+# test colon separator with single spaces around equals sign
 new_ec_test(colon_sep_single_spaces_around_equals whitespace.in test2.d
     "^key=value[ \t\n\r]*$")
 
-# test colon seperator with multiple spaces around equals sign
+# test colon separator with multiple spaces around equals sign
 new_ec_test(colon_sep_multiple_spaces_around_equals whitespace.in test3.d
     "^key=value[ \t\n\r]*$")
 
-# test colon seperator with spaces before property name
+# test colon separator with spaces before property name
 new_ec_test(colon_sep_spaces_before_property_name whitespace.in test4.d
     "^key=value[ \t\n\r]*$")
 
-# test colon seperator with spaces before after property value
+# test colon separator with spaces before after property value
 new_ec_test(colon_sep_spaces_after_property_value whitespace.in test5.d
     "^key=value[ \t\n\r]*$")
 

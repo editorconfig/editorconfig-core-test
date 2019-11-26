@@ -63,6 +63,6 @@ key : value
 [test4.d]
   key:value
 
-; colon seperator with spaces after property value
+; colon separator with spaces after property value
 [test5.d]
 key:value  
