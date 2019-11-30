@@ -70,35 +70,7 @@ new_ec_test(spaces_after_section_name whitespace.in test9.c "^key=value[ \t\n\r]
 new_ec_test_multiline(spaces_before_middle_property_ML whitespace.in test10.c
     "key1=value1[ \t]*[\n\r]+key2=value2[ \t]*[\n\r]+key3=value3[ \t\n\r]*")
 
-# test colon separator with no whitespaces in property assignment
-new_ec_test(colon_sep_no_whitespace whitespace.in test1.d "^key=value[ \t\n\r]*$")
-
-# test colon separator with single spaces around equals sign
-new_ec_test(colon_sep_single_spaces_around_equals whitespace.in test2.d
-    "^key=value[ \t\n\r]*$")
-
-# test colon separator with multiple spaces around equals sign
-new_ec_test(colon_sep_multiple_spaces_around_equals whitespace.in test3.d
-    "^key=value[ \t\n\r]*$")
-
-# test colon separator with spaces before property name
-new_ec_test(colon_sep_spaces_before_property_name whitespace.in test4.d
-    "^key=value[ \t\n\r]*$")
-
-# test colon separator with spaces before after property value
-new_ec_test(colon_sep_spaces_after_property_value whitespace.in test5.d
-    "^key=value[ \t\n\r]*$")
-
-
 # Tests for comment parsing
-
-# test comments ignored after property name
-new_ec_test(comments_after_property comments.in test1.c
-    "^key=value[ \t\n\r]*$")
-
-# test comments ignored after section name
-new_ec_test(comments_after_section comments.in test2.c
-    "^key=value[ \t\n\r]*$")
 
 # test comments ignored before properties
 new_ec_test(comment_before_props comments.in test3.c
@@ -114,14 +86,6 @@ new_ec_test(semicolon_in_property comments.in test5.c
 
 # test escaped semicolons are included in section names
 new_ec_test(escaped_semicolon_in_section comments.in "test;.c"
-    "^key=value[ \t\n\r]*$")
-
-# test octothorpe comments ignored after property name
-new_ec_test(octothorpe_comments_after_property comments.in test7.c
-    "^key=value[ \t\n\r]*$")
-
-# test octothorpe comments ignored after section name
-new_ec_test(octothorpe_comments_after_section comments.in test8.c
     "^key=value[ \t\n\r]*$")
 
 # test octothorpe comments ignored before properties
