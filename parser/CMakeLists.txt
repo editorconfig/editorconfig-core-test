@@ -32,7 +32,7 @@ new_ec_test_multiline(basic_cascade_ML basic.in b.b "option1=c[ \t]*[\n\r]+optio
 
 # Tests for whitespace parsing
 
-# test no whitespaces in property assignment
+# test no whitespaces in pair assignment
 new_ec_test(no_whitespace whitespace.in test1.c "^key=value[ \t\n\r]*$")
 
 # test single spaces around equals sign
@@ -43,16 +43,16 @@ new_ec_test(single_spaces_around_equals whitespace.in test2.c
 new_ec_test(multiple_spaces_around_equals whitespace.in test3.c
     "^key=value[ \t\n\r]*$")
 
-# test spaces before property name
-new_ec_test(spaces_before_property_name whitespace.in test4.c
+# test spaces before pair key
+new_ec_test(spaces_before_pair_key whitespace.in test4.c
     "^key=value[ \t\n\r]*$")
 
-# test spaces before after property value
-new_ec_test(spaces_after_property_value whitespace.in test5.c
+# test spaces before after pair value
+new_ec_test(spaces_after_pair_value whitespace.in test5.c
     "^key=value[ \t\n\r]*$")
 
-# test blank lines between properties
-new_ec_test_multiline(blank_lines_between_properties_ML whitespace.in test6.c
+# test blank lines between pairs
+new_ec_test_multiline(blank_lines_between_pairs_ML whitespace.in test6.c
     "key1=value1[ \t]*[\n\r]+key2=value2[ \t\n\r]*")
 
 # test spaces in section name
@@ -66,37 +66,37 @@ new_ec_test(spaces_before_section_name whitespace.in test8.c
 # test spaces after section name
 new_ec_test(spaces_after_section_name whitespace.in test9.c "^key=value[ \t\n\r]*$")
 
-# test spaces at beginning of line between properties
-new_ec_test_multiline(spaces_before_middle_property_ML whitespace.in test10.c
+# test spaces at beginning of line between pairs
+new_ec_test_multiline(spaces_before_middle_pair_ML whitespace.in test10.c
     "key1=value1[ \t]*[\n\r]+key2=value2[ \t]*[\n\r]+key3=value3[ \t\n\r]*")
 
 # Tests for comment parsing
 
-# test comments ignored before properties
+# test comments ignored before pairs
 new_ec_test(comment_before_props comments.in test3.c
     "^key=value[ \t\n\r]*$")
 
-# test comments ignored between properties
+# test comments ignored between pairs
 new_ec_test_multiline(comment_between_props_ML comments.in test4.c
     "key1=value1[ \t]*[\n\r]+key2=value2[ \t\n\r]*")
 
-# test semicolons at end of property value are included in value
-new_ec_test(semicolon_in_property comments.in test5.c
+# test semicolons at end of pair value are included in value
+new_ec_test(semicolon_in_pair_value comments.in test5.c
     "^key=value; not comment[ \t\n\r]*$")
 
 # test escaped semicolons are included in section names
 new_ec_test(escaped_semicolon_in_section comments.in "test;.c"
     "^key=value[ \t\n\r]*$")
 
-# test octothorpe comments ignored before properties
+# test octothorpe comments ignored before pairs
 new_ec_test(octothorpe_comment_before_props comments.in test9.c
     "^key=value[ \t\n\r]*$")
 
-# test octothorpe comments ignored between properties
+# test octothorpe comments ignored between pairs
 new_ec_test_multiline(octothorpe_comment_between_props_ML comments.in test10.c
     "key1=value1[ \t]*[\n\r]+key2=value2[ \t\n\r]*")
 
-# test octothorpe at end of property value are included in value
+# test octothorpe at end of pair value are included in value
 new_ec_test(octothorpe_in_value comments.in test11.c
     "^key=value# not comment[ \t\n\r]*$")
 
@@ -111,10 +111,10 @@ new_ec_test(bom_at_head bom.in "a.c" "^key=value[ \t\n\r]*$")
 new_ec_test(crlf_linesep crlf.in "a.c" "^key=value[ \t\n\r]*$")
 
 
-# Test max property name and values
-new_ec_test(max_property_name limits.in test1
+# Test max pair key and values
+new_ec_test(max_pair_key limits.in test1
     "^00000000000000000000000000000000000000000000000001=50[ \t\n\r]*$")
-new_ec_test(max_property_value limits.in test2
+new_ec_test(max_pair_value limits.in test2
     "^k255=000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001[ \t\n\r]*$")
 
 # Test max section names

@@ -3,12 +3,12 @@
 root = true
 
 [test3.c]
-; Comment before properties ignored
+; Comment before key-value pair ignored
 key=value
 
 [test4.c]
 key1=value1
-; Comment between properties ignored
+; Comment between key-value pairs ignored
 key2=value2
 
 ; Semicolon at end of value read as part of value
@@ -24,12 +24,12 @@ key=value \; not comment
 key=value
 
 [test9.c]
-# Comment before properties ignored
+# Comment before key-value pair ignored
 key=value
 
 [test10.c]
 key1=value1
-# Comment between properties ignored
+# Comment between key-value pairs ignored
 key2=value2
 
 # Octothorpe at end of value read as part of value

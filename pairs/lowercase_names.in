@@ -1,0 +1,6 @@
+; test that pair keys are lowercased
+
+root = true
+
+[test.c]
+TestKey = testvalue

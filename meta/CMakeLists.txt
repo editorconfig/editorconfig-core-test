@@ -36,7 +36,7 @@ message(STATUS "meta: Using editorconfig ${EDITORCONFIG_CMD}")
 
 # Test run_and_sort()
 add_test(meta_runandsort cmake -P "${tests_meta_cmakelists_dir}/sample.cmake")
-set_tests_properties(meta_runandsort PROPERTIES PASS_REGULAR_EXPRESSION
+set_tests_pairs(meta_runandsort PAIRS PASS_REGULAR_EXPRESSION
     "^[\r\n]*0${L}a;b${L}b;c${L}b;e${L}b;f${L}c;b;a${L}d${L}$")
     # Have to permit leading \n's - I don't know how to get rid of them
 

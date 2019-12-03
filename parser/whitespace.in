@@ -14,15 +14,15 @@ key = value
 [test3.c]
 key  =   value
 
-; spaces before property name
+; spaces before pair key
 [test4.c]
   key=value
 
-; spaces after property value
+; spaces after pair value
 [test5.c]
 key=value  
 
-; blank lines between properties
+; blank lines between key-value pairs
 [test6.c]
 
 key1=value1
@@ -41,7 +41,7 @@ key=value
 [test9.c]  
 key=value
 
-; spacing before middle property
+; spacing before middle key-value pair
 [test10.c]
 key1=value1
   key2=value2
