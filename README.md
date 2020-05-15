@@ -1,16 +1,18 @@
-This project is a series of testing for [EditorConfig Core][editorconfig]. Please have
-[cmake][] installed before using this project.
+# editorconfig-core-test
 
-### Use editorconfig-core-test independently
+This project is a series of tests for [EditorConfig][] cores.
+Please have [cmake][] installed before using this project.
+
+## Use editorconfig-core-test independently
 
 After installing cmake, switch to the root dir of this project, and execute:
 
     cmake -DEDITORCONFIG_CMD=the_editorconfig_core_cmd_you_want_to_test .
 
-After that, if testing files are generated successfully, execute `ctest .` to
-start testings.
+After that, if the test files have been generated successfully, execute
+`ctest .` to start testing.
 
-### Use editorconfig-core-test in your project as a git submodule
+## Use editorconfig-core-test in your project as a git submodule
 
 If you are using [git][] and cmake to manage your project, this method should
 be suitable for you.
@@ -29,9 +31,15 @@ set(EDITORCONFIG_CMD the_editorconfig_core_path)
 add_subdirectory(tests)
 ```
 
-Now after executing `cmake .` in you project root dir, you should be able to
-run the testings by executing `ctest .`.
+Now after executing `cmake .` in your project root dir, you should be able to
+run the tests by executing `ctest .`.
 
-[cmake]: http://www.cmake.org
-[editorconfig]: http://editorconfig.org
-[git]: http://git-scm.com
+## Versioning
+
+The version of this repository matches the version of the EditorConfig
+[specification][].
+
+[cmake]: https://www.cmake.org
+[EditorConfig]: https://editorconfig.org
+[git]: https://git-scm.com
+[specification]: https://editorconfig-specification.readthedocs.io/en/latest/
