@@ -120,3 +120,9 @@ new_ec_test(max_property_value limits.in test2
 # Test max section names
 new_ec_test(max_section_name_ok limits.in test3 "^key=value[ \t\n\r]*$")
 new_ec_test(max_section_name_ignore limits.in test4 "^[ \t\n\r]*$")
+
+# Empty .editorconfig files
+new_ec_test(empty_editorconfig_file empty.in test4 "^[ \t\n\r]*$")
+new_ec_test(newlines_only_editorconfig_file newlines_only.in test4 "^[ \t\n\r]*$")
+new_ec_test(comments_only_editorconfig_file comments_only.in test4 "^[ \t\n\r]*$")
+new_ec_test(comments_and_newlines_editorconfig_file comments_and_newlines.in test4 "^[ \t\n\r]*$")
