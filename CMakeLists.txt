@@ -57,20 +57,20 @@ endif()
 function(new_ec_test name ec_file src_file regex)
     add_test(NAME ${name} COMMAND ${EDITORCONFIG_CMD} -f ${ec_file}
         "${CMAKE_CURRENT_SOURCE_DIR}/${src_file}")
-    set_tests_properties(${name} PROPERTIES PASS_REGULAR_EXPRESSION "${regex}")
+    set_tests_pairs(${name} PAIRS PASS_REGULAR_EXPRESSION "${regex}")
 endfunction()
 
 # A test that requires a version specified
 function(new_ec_test_version name ec_file src_file regex version)
     add_test(NAME ${name} COMMAND ${EDITORCONFIG_CMD} -b ${version} -f ${ec_file}
         "${CMAKE_CURRENT_SOURCE_DIR}/${src_file}")
-    set_tests_properties(${name} PROPERTIES PASS_REGULAR_EXPRESSION "${regex}")
+    set_tests_pairs(${name} PAIRS PASS_REGULAR_EXPRESSION "${regex}")
 endfunction()
 
 # A test that requires the full path to the EditorConfig files
 function(new_ec_test_full_ec_file_path name ec_file src_file regex)
     add_test(NAME ${name} COMMAND ${EDITORCONFIG_CMD} -f ${ec_file} ${src_file})
-    set_tests_properties(${name} PROPERTIES PASS_REGULAR_EXPRESSION "${regex}")
+    set_tests_pairs(${name} PAIRS PASS_REGULAR_EXPRESSION "${regex}")
 endfunction()
 
 # A test that returns multiple lines of output.  CAUTION: filenames used in
@@ -94,7 +94,7 @@ function(new_ec_test_multiline name ec_file src_file regex)
                     "-P" "${tests_cmakelists_dir}/cmake/ec_sort.cmake")
     endif()
 
-    set_tests_properties(${name} PROPERTIES PASS_REGULAR_EXPRESSION
+    set_tests_pairs(${name} PAIRS PASS_REGULAR_EXPRESSION
         "^[\r\n]*${regex}$")
         # Permit leading \n's because I can't always get rid of them using
         # only CMake-provided facilities.
@@ -111,7 +111,7 @@ function(new_ec_cli_test)
 
     # Add test
     add_test(NAME ${P_NAME} COMMAND ${EDITORCONFIG_CMD} ${P_ARGS})
-    set_tests_properties(${name} PROPERTIES PASS_REGULAR_EXPRESSION "${P_MATCH}")
+    set_tests_pairs(${name} PAIRS PASS_REGULAR_EXPRESSION "${P_MATCH}")
 
 endfunction()
 
@@ -120,7 +120,7 @@ add_subdirectory(meta)
 
 # Then test the core.
 add_subdirectory(glob)
-add_subdirectory(properties)
+add_subdirectory(pairs)
 add_subdirectory(parser)
 add_subdirectory(filetree)
 add_subdirectory(cli)

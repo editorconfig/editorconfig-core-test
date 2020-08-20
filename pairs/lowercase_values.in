@@ -1,4 +1,4 @@
-; test property name lowercasing
+; test pair key lowercasing
 
 root = true
 
@@ -12,4 +12,4 @@ trim_trailing_whitespace = False
 charset = UTF-8
 
 [test3.c]
-test_property = TestValue
+test_key = TestValue
