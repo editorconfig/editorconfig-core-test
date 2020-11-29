@@ -156,6 +156,20 @@ new_ec_test(braces_nested3 braces.in word.g "^nested=true[ \t\n\r]*$")
 new_ec_test(braces_nested4 braces.in {also}.g "^nested=true[ \t\n\r]*$")
 new_ec_test(braces_nested5 braces.in this.g "^nested=true[ \t\n\r]*$")
 
+# nested braces, adjacent at start
+new_ec_test(braces_nested_start1 braces.in {{a,b},c}.k "^[ \t\n\r]*$")
+new_ec_test(braces_nested_start2 braces.in {a,b}.k "^[ \t\n\r]*$")
+new_ec_test(braces_nested_start3 braces.in a.k "^nested_start=true[ \t\n\r]*$")
+new_ec_test(braces_nested_start4 braces.in b.k "^nested_start=true[ \t\n\r]*$")
+new_ec_test(braces_nested_start5 braces.in c.k "^nested_start=true[ \t\n\r]*$")
+
+# nested braces, adjacent at end
+new_ec_test(braces_nested_end1 braces.in {a,{b,c}}.l "^[ \t\n\r]*$")
+new_ec_test(braces_nested_end2 braces.in {b,c}.l "^[ \t\n\r]*$")
+new_ec_test(braces_nested_end3 braces.in a.l "^nested_end=true[ \t\n\r]*$")
+new_ec_test(braces_nested_end4 braces.in b.l "^nested_end=true[ \t\n\r]*$")
+new_ec_test(braces_nested_end5 braces.in c.l "^nested_end=true[ \t\n\r]*$")
+
 # closing inside beginning
 new_ec_test(braces_closing_in_beginning braces.in {},b}.h "^closing=inside[ \t\n\r]*$")
 
