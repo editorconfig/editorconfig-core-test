@@ -6,6 +6,10 @@ root=true
 [*.{py,js,html}]
 choice=true
 
+; word choice with spaces
+[*.{py, js, html}]
+choice=true
+
 ; single choice
 [{single}.b]
 choice=single
