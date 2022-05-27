@@ -125,6 +125,12 @@ new_ec_test(braces_word_choice2 braces.in test.js "^choice=true[ \t\n\r]*$")
 new_ec_test(braces_word_choice3 braces.in test.html "^choice=true[ \t\n\r]*$")
 new_ec_test(braces_word_choice4 braces.in test.pyc "^[ \t\n\r]*$")
 
+# word choice with spaces
+new_ec_test(braces_word_choice5 braces.in test.py "^choice=true[ \t\n\r]*$")
+new_ec_test(braces_word_choice6 braces.in test.js "^choice=true[ \t\n\r]*$")
+new_ec_test(braces_word_choice7 braces.in test.html "^choice=true[ \t\n\r]*$")
+new_ec_test(braces_word_choice8 braces.in test.pyc "^[ \t\n\r]*$")
+
 # single choice
 new_ec_test(braces_single_choice braces.in {single}.b "^choice=single[ \t\n\r]*$")
 new_ec_test(braces_single_choice_negative braces.in .b "^[ \t\n\r]*$")
