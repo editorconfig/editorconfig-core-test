@@ -80,9 +80,15 @@ new_ec_test(comment_before_props comments.in test3.c
 new_ec_test_multiline(comment_between_props_ML comments.in test4.c
     "key1=value1[ \t]*[\n\r]+key2=value2[ \t\n\r]*")
 
-# test semicolons at end of property value are included in value
-new_ec_test(semicolon_in_property comments.in test5.c
-    "^key=value; not comment[ \t\n\r]*$")
+# test semicolons and hashes at end of property value are included in value
+new_ec_test(semicolon_or_hash_in_property comments.in test5.c
+    "^key1=value; not comment[\n\r]+key2=value # not comment[ \t\n\r]*$")
+
+# test that backslashes before semicolons and hashes in property values
+# are included in value.
+# NOTE: [\\] matches a single literal backslash.
+new_ec_test(backslashed_semicolon_or_hash_in_property comments.in test6.c
+    "^key1=value [\\]; not comment[\n\r]+key2=value [\\]# not comment[ \t\n\r]*$")
 
 # test escaped semicolons are included in section names
 new_ec_test(escaped_semicolon_in_section comments.in "test;.c"

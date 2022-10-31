@@ -11,13 +11,15 @@ key1=value1
 ; Comment between properties ignored
 key2=value2
 
-; Semicolon at end of value read as part of value
+; Semicolon or hash at end of value read as part of value
 [test5.c]
-key=value; not comment
+key1=value; not comment
+key2=value # not comment
 
-; Escaped semicolon in value
+; Backslash before a semicolon or hash is part of the value
 [test6.c]
-key=value \; not comment
+key1=value \; not comment
+key2=value \# not comment
 
 ; Escaped semicolon in section name
 [test\;.c]
