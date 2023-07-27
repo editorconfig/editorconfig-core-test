@@ -70,6 +70,9 @@ new_ec_test(spaces_after_section_name whitespace.in test9.c "^key=value[ \t\n\r]
 new_ec_test_multiline(spaces_before_middle_property_ML whitespace.in test10.c
     "key1=value1[ \t]*[\n\r]+key2=value2[ \t]*[\n\r]+key3=value3[ \t\n\r]*")
 
+# test spaces in the middle of a key
+new_ec_test(spaces_in_middle_key whitespace.in test11.c "ke y=value[ \t\n\r]*")
+
 # Tests for comment parsing
 
 # test comments ignored before properties
