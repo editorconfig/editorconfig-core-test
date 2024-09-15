@@ -47,6 +47,14 @@ new_ec_test_multiline(star_matches_dot_file_after_slash_ML star.in Bar/.editorco
 # star matches a dot file
 new_ec_test(star_matches_dot_file star.in .editorconfig "^keyc=valuec[ \t\n\r]*$")
 
+# Slash makes the pattern not match in subdirectories
+new_ec_test_multiline(star_after_slash_ML_in_subdir star.in
+    bat/Bar/foo.txt "^[ \t\n\r]*keyc=valuec[ \t\n\r]*$")
+
+# Slash makes the pattern not match dotfiles in subdirectories
+new_ec_test_multiline(star_matches_dot_file_after_slash_ML_in_subdir star.in
+    bat/Bar/.editorconfig "^[ \t\n\r]*keyc=valuec[ \t\n\r]*$")
+
 # Tests for ?
 
 # matches a single character
