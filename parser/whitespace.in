@@ -46,3 +46,7 @@ key=value
 key1=value1
   key2=value2
 key3=value3
+
+; space in the middle of a key
+[test11.c]
+ke y=value
