@@ -46,3 +46,7 @@ key=value
 key1=value1
   key2=value2
 key3=value3
+
+; value with whitespace inside and the leading and trailing ws ignored
+[test11.c]
+key= value with whitespace inside  

@@ -70,6 +70,10 @@ new_ec_test(spaces_after_section_name whitespace.in test9.c "^key=value[ \t\n\r]
 new_ec_test_multiline(spaces_before_middle_property_ML whitespace.in test10.c
     "key1=value1[ \t]*[\n\r]+key2=value2[ \t]*[\n\r]+key3=value3[ \t\n\r]*")
 
+# value with whitespace inside and the leading and trailing ws ignored
+new_ec_test(value_with_whitespace_inside whitespace.in test11.c
+    "^key=value with whitespace inside[\n\r]+$")
+
 # Tests for comment parsing
 
 # test comments ignored before properties
@@ -129,3 +133,6 @@ new_ec_test(empty_editorconfig_file empty.in test4 "^[ \t\n\r]*$")
 new_ec_test(newlines_only_editorconfig_file newlines_only.in test4 "^[ \t\n\r]*$")
 new_ec_test(comments_only_editorconfig_file comments_only.in test4 "^[ \t\n\r]*$")
 new_ec_test(comments_and_newlines_editorconfig_file comments_and_newlines.in test4 "^[ \t\n\r]*$")
+
+# A value set to empty string
+new_ec_test(key_set_to_empty_string empty_values.in test1 "^key1=[\n\r]+key2=[\n\r]+key3=[\n\r]+$")
