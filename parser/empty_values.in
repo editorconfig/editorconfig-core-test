@@ -1,7 +1,7 @@
 root = true
 
 [test1]
-; A key set to empty string
+; A value set to empty string
 key1=
 ; Whitespace after equals sign is ignored
 key2=  
