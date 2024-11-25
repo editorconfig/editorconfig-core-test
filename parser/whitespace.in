@@ -50,3 +50,7 @@ key3=value3
 ; value with whitespace inside and the leading and trailing ws ignored
 [test11.c]
 key= value with whitespace inside  
+
+; space in the middle of a key
+[test12.c]
+ke y=value

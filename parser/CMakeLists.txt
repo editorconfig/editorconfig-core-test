@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2011-2018 EditorConfig Team
+# Copyright (c) 2011-2024 EditorConfig Team
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -73,6 +73,9 @@ new_ec_test_multiline(spaces_before_middle_property_ML whitespace.in test10.c
 # value with whitespace inside and the leading and trailing ws ignored
 new_ec_test(value_with_whitespace_inside whitespace.in test11.c
     "^key=value with whitespace inside[\n\r]+$")
+
+# test spaces in the middle of a key
+new_ec_test(spaces_in_middle_key whitespace.in test12.c "ke y=value[ \t\n\r]*")
 
 # Tests for comment parsing
 
