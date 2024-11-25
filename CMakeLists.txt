@@ -25,8 +25,8 @@
 #
 
 # New escape-sequence processing.
-cmake_minimum_required(VERSION 3.5)
-cmake_policy(VERSION 3.5.1)
+cmake_minimum_required(VERSION 3.16.3)
+cmake_policy(VERSION 3.16.3)
 
 # Don't check any language compiler. This project is for EditorConfig Core
 # testing only.
