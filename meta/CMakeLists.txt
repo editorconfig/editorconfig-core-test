@@ -25,8 +25,6 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-cmake_minimum_required(VERSION 3.5)
-
 set(tests_meta_cmakelists_dir "${CMAKE_CURRENT_LIST_DIR}")
 
 # Line separator regex, for convenience
