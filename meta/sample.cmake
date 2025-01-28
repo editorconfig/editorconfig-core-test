@@ -1,6 +1,6 @@
 # sample.cmake: Tests run_and_sort to make sure it's working.
 
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.16.3)
 
 # See documentation links at https://stackoverflow.com/q/12802377/2877364
 set( tests_meta_sample_dir "${CMAKE_CURRENT_LIST_DIR}" )
