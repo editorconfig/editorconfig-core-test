@@ -139,3 +139,6 @@ new_ec_test(comments_and_newlines_editorconfig_file comments_and_newlines.in tes
 
 # A value set to empty string
 new_ec_test(key_set_to_empty_string empty_values.in test1 "^key1=[\n\r]+key2=[\n\r]+key3=[\n\r]+$")
+
+# Leading slash test
+new_ec_test(leading_slash_relevance leading_slash.in test1/file.java "^key1=val1[\n\r]+key2=val2[\n\r]+key3=val3[\n\r]+$")
