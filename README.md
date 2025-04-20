@@ -33,5 +33,5 @@ Now after executing `cmake .` in you project root dir, you should be able to
 run the testings by executing `ctest .`.
 
 [cmake]: http://www.cmake.org
-[editorconfig]: http://editorconfig.org
+[editorconfig]: https://editorconfig.org
 [git]: http://git-scm.com
